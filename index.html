@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim Minkyong | Data Scientist</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --text-strong: #0f172a;
+            --text-main: #475569;
+            --text-dim: #94a3b8;
+            --accent: #2563eb;
+            --accent-soft: rgba(37, 99, 235, 0.08);
+            --nav-line: #cbd5e1;
+            --bullet: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Pretendard', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .spotlight {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(600px at var(--x, 0px) var(--y, 0px), rgba(37, 99, 235, 0.04), transparent 80%);
+            z-index: 10;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 80px;
+        }
+
+        header {
+            width: 40%;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 96px 0;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            object-fit: cover;
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--text-strong);
+            letter-spacing: -0.04em;
+            margin-bottom: 8px;
+        }
+
+        header h2 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-strong);
+            margin-bottom: 16px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            max-width: 280px;
+            color: var(--text-main);
+        }
+
+        nav {
+            margin-top: 64px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 14px 0;
+            transition: all 0.3s;
+        }
+
+        nav a .line {
+            width: 30px;
+            height: 1px;
+            background-color: var(--nav-line);
+            margin-right: 16px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-strong);
+        }
+
+        nav a:hover .line, nav a.active .line {
+            width: 60px;
+            background-color: var(--text-strong);
+        }
+
+        .socials {
+            margin-top: auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        .socials a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .socials a:hover {
+            color: var(--text-strong);
+        }
+
+        main {
+            width: 60%;
+            padding: 96px 0;
+        }
+
+        section {
+            margin-bottom: 120px;
+            scroll-margin-top: 96px;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-strong);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 32px;
+        }
+
+        .highlight {
+            color: var(--text-strong);
+            font-weight: 600;
+        }
+
+        .item-row {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .item-row .date {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            padding-top: 4px;
+        }
+
+        .content h3 {
+            font-size: 1rem;
+            color: var(--text-strong);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .content .sub-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .content ul {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .content li {
+            font-size: 0.875rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .content li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--accent);
+        }
+
+        .content li strong {
+            color: var(--text-strong);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            background-color: var(--accent-soft);
+            color: var(--accent);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        footer {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+            border-top: 1px solid var(--bullet);
+            padding-top: 32px;
+        }
+
+        @media (max-width: 1024px) {
+            .container { padding: 0 40px; flex-direction: column; }
+            header { width: 100%; height: auto; position: relative; padding: 64px 0 48px; }
+            main { width: 100%; padding: 0; }
+            nav { display: none; }
+            .item-row { grid-template-columns: 1fr; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight"></div>
+
+    <div class="container">
+        <header>
+            <img src="my_img.jpg" alt="Kim Mikyong" class="profile-img">
+            <div class="profile">
+                <h1>김민경</h1>
+                <h2>Data Scientist</h2>
+                <p>비즈니스 니즈를 기술로 풀어내어, 데이터로 명확한 성과를 증명하는 Data Scientist입니다.</p>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#about" class="active"><span class="line"></span>About</a></li>
+                        <li><a href="#experience"><span class="line"></span>Experience</a></li>
+                        <li><a href="#awards"><span class="line"></span>Awards</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="socials">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Email</a>
+            </div>
+        </header>
+
+        <main>
+            <section id="about">
+                <p>저는 복잡한 수식보다 명확한 <span class="highlight">수치</span>를, 기술 그 자체보다 비즈니스 <span class="highlight">임팩트</span>를 우선시합니다.</p>
+                <p>비즈니스 니즈를 기술로 풀어내는 과정에서 라이나생명 사내 최초의 오픈소스 LLM 인프라를 구축했으며, <span class="highlight">세일즈 효율 2배 향상</span>이라는 결과로 그 실효성을 증명했습니다.</p>
+                <p>단순히 정교한 모델을 만드는 것을 넘어, 현업이 신뢰하고 의사결정에 즉시 활용할 수 있는 <span class="highlight">데이터 생태계</span>를 설계하는 데 강점이 있습니다.</p>
+            </section>
+
+            <section id="experience">
+                <div class="section-title">Experience</div>
+
+                <div class="item-row">
+                    <div class="date">2024.05 — 현재</div>
+                    <div class="content">
+                        <h3>라이나생명</h3>
+                        <div class="sub-title">Data Scientist</div>
+                        <ul>
+                            <li><strong>Text-to-SQL Agent PoC 기획 및 개발 리드:</strong> <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2025.09 — 11)</span>
+                                <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-main); line-height: 1.8;">
+                                    • <span class="highlight">KPI 질의 자동화 플로우 설계</span> 및 LLM 에이전트 개발 리드<br>
+                                    • 데이터 접근성 혁신 성과로 <span class="highlight">2026년 본부 핵심 과제</span> 확장 선정
+                                </div>
+                            </li>
+                            <li><strong>대외/사내 리크루팅 직무 대표 활동:</strong> <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2025.09)</span>
+                                <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-main); line-height: 1.8;">
+                                    • 2025 신입공채 채용박람회 및 사옥박람회 <span class="highlight">Data 직무 대표</span> 참여
+                                </div>
+                            </li>
+                            <li><strong>사내 최초 오픈소스 LLM 도입 및 TM 세일즈 효율 개선:</strong> <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2025.04 — 12)</span>
+                                <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-main); line-height: 1.8;">
+                                    • 오픈소스 LLM 모델 선별 및 <span class="highlight">사내 최초 도입</span><br>
+                                    • LLM 구동을 위한 사내 서버 환경 및 분석 인프라 <span class="highlight">최초 구축</span><br>
+                                    • 센터 인터뷰를 통한 현업 니즈 발굴, 서비스 기획 및 <span class="highlight">프롬프트 엔지니어링</span><br>
+                                    • 단순 적재되던 <span class="highlight">STT 데이터 자산화</span>에 기여<br>
+                                    • 발화 분석 기반 캠페인 고도화로 <span class="highlight">RR 약 2배 향상 (0.55% → 1.50%)</span>
+                                </div>
+                            </li>
+                            <li><strong>그래프/네트워크 기반 조직형 보험사기 탐지:</strong> <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2025.04 — 11)</span>
+                                <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-main); line-height: 1.8;">
+                                    • 네트워크 알고리즘을 활용한 이상 패턴 탐지 및 <span class="highlight">SIU 운영 비용 절감</span> 기여
+                                </div>
+                            </li>
+                            <li><strong>통합 데이터 플랫폼(KDP) 구축:</strong> <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2024.09 — 2025.04)</span>
+                                <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-main); line-height: 1.8;">
+                                    • 2인 모델러 참여, <span class="highlight">SHAP 기반 XAI 로직</span> 제안 및 반영으로 현업 수용성 개선
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Python</span><span class="tag">LLM</span><span class="tag">Spark</span><span class="tag">SHAP</span><span class="tag">GraphDB</span><span class="tag">SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-row">
+                    <div class="date">2021 — 2022</div>
+                    <div class="content">
+                        <h3>Research & Internship</h3>
+                        <div class="sub-title">산학연구원</div>
+                        <ul>
+                            <li><strong>ELK Stack AMI 플랫폼:</strong> 주택 AMI 빅데이터 플랫폼 구축 <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2022.09 — 12)</span></li>
+                            <li><strong>장애인 구인구직 서비스:</strong> 미스매치 해소를 위한 서비스 기획 <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2021.06 — 11)</span></li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">ELK Stack</span><span class="tag">Big Data</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="awards">
+                <div class="section-title">Awards & Honors</div>
+
+                <div class="item-row">
+                    <div class="date">2023 — 2025</div>
+                    <div class="content">
+                        <h3>Key Recognition</h3>
+                        <ul>
+                            <li><strong>의정부시장 표창:</strong> 지역문화예술 기여 <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2025.10)</span></li>
+                            <li><strong>한국프롭테크포럼 대상:</strong> 청년 주거 시세 시각화 분석 서비스 <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2023.12)</span></li>
+                            <li><strong>산업통상자원부 장관상:</strong> 친환경 인테리어 전력 사용량 예측 분석 <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2023.08)</span></li>
+                            <li><strong>LG Aimers 상위 5%:</strong> 제조 공정 불량 예측 (본선 진출) <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2023.03)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="item-row">
+                    <div class="date">Education</div>
+                    <div class="content">
+                        <h3>학력 사항</h3>
+                        <ul>
+                            <li><strong>중앙대학교:</strong> 통계학 석사, GPA 4.1/4.5 <span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2022.03 — 2024.02)</span></li>
+                            <li><strong>동덕여자대학교:</strong> 정보통계학 학사, GPA 4.1/4.5, 수석<span style="color: var(--text-dim); font-size: 0.8rem; margin-left: 4px;">(2018.03 — 2022.02)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>Built with Inter & Pretendard. Focused on clarity and impact. © 2026 Kim Minkong.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        const spotlight = document.querySelector('.spotlight');
+        window.addEventListener('mousemove', e => {
+            spotlight.style.setProperty('--x', `${e.clientX}px`);
+            spotlight.style.setProperty('--y', `${e.clientY}px`);
+        });
+
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
